@@ -106,6 +106,7 @@ signTransactionButton.addEventListener("click", async () => {
   const decoded = transactions.Transaction.decode(encoded)
 
   console.log({ originalTX: tx })
+  console.log({ decodedTX: decoded })
   console.log({ publicKey: decoded.publicKey.toString() })
 
   const [, signedTx] = await transactions.signTransaction(
