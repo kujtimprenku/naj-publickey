@@ -1,0 +1,22 @@
+{
+  "name": "naj-publickey",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3",
+    "vite": "^5.4.1"
+  },
+  "dependencies": {
+    "buffer": "^6.0.3",
+    "gh-pages": "^6.1.1",
+    "near-api-js": "^4.0.4",
+    "process": "^0.11.10"
+  }
+}
