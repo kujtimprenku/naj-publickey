@@ -16,7 +16,7 @@
   "dependencies": {
     "buffer": "^6.0.3",
     "gh-pages": "^6.1.1",
-    "near-api-js": "^4.0.4",
+    "near-api-js": "^5.0.0",
     "process": "^0.11.10"
   }
 }
