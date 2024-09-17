@@ -20,9 +20,9 @@ const network = {
 };
 
 let _walletState: any;
-const failoverRpcProvider = new providers.FailoverRpcProvider([
-  new providers.JsonRpcProvider({ url: network.nodeUrl }),
-]);
+const jsonRpcProvider = new providers.JsonRpcProvider({
+  url: network.nodeUrl,
+});
 
 const setupWalletState = async (): Promise<any> => {
   const keyStore = new keyStores.BrowserLocalStorageKeyStore();
@@ -90,7 +90,7 @@ signTransactionButton.addEventListener("click", async () => {
     );
   }
 
-  const block = await failoverRpcProvider.block({ finality: "final" });
+  const block = await jsonRpcProvider.block({ finality: "final" });
   const nonce = accessKey.access_key.nonce + BigInt(1);
 
   const tx = transactions.createTransaction(
@@ -103,11 +103,11 @@ signTransactionButton.addEventListener("click", async () => {
   );
 
   const encoded = tx.encode();
-  const decoded = transactions.Transaction.decode(encoded)
+  const decoded = transactions.Transaction.decode(encoded);
 
-  console.log({ originalTX: tx })
-  console.log({ decodedTX: decoded })
-  console.log({ publicKey: decoded.publicKey.toString() })
+  console.log({ originalTX: tx });
+  console.log({ decodedTX: decoded });
+  console.log({ publicKey: decoded.publicKey.toString() });
 
   const [, signedTx] = await transactions.signTransaction(
     tx,
@@ -120,7 +120,7 @@ signTransactionButton.addEventListener("click", async () => {
 
   // Send Transaction
   try {
-    await failoverRpcProvider.sendTransaction(signedTx);
+    await jsonRpcProvider.sendTransaction(signedTx);
     alert("Successfully sent signed tx");
   } catch (error: any) {
     alert(error?.message);
